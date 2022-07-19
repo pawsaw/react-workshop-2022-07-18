@@ -1,6 +1,8 @@
+import { CSSProperties, useState } from 'react';
 import './App.css';
+import { BookDetail } from './components/BookDetail';
 import { BookList } from './components/BookList';
-import { useBooks } from './domain/books';
+import { useBook, useBooks } from './domain/books';
 
 function App() {
   // const [book, setBook] = useState<Book | null>(null);
@@ -12,19 +14,43 @@ function App() {
   //   })();
   // }, []);
 
-  const { books, reload } = useBooks();
+  const [selectedIsbn, setSelectedIsbn] = useState<string | null>(null);
+  const { books, reload: reloadBooks } = useBooks();
+  const { book, reload: reloadBook } = useBook(selectedIsbn);
 
   return (
-    <div className="App">
-      <button onClick={reload}>Reload books</button>
-      {/* {book ? <BookDetail book={book} /> : <span>Loading book...</span>} */}
-      {books ? (
-        <BookList books={books} onBookSelected={(book) => alert(book.price)} />
-      ) : (
-        <span>Loading...</span>
+    <div style={style.container}>
+      <div style={style.list}>
+        <button onClick={reloadBooks}>Reload books</button>
+        {/* {book ? <BookDetail book={book} /> : <span>Loading book...</span>} */}
+        {books ? (
+          <BookList books={books} onBookSelected={(book) => setSelectedIsbn(book.isbn)} />
+        ) : (
+          <span>Loading...</span>
+        )}
+      </div>
+      {selectedIsbn && (
+        <div style={style.detail}>
+          <button onClick={() => reloadBook(selectedIsbn)}>Reload book</button>
+          {/* {book ? <BookDetail book={book} /> : <span>Loading book...</span>} */}
+          {book ? <BookDetail book={book} /> : <span>Loading...</span>}
+        </div>
       )}
     </div>
   );
 }
 
 export default App;
+
+const style: Record<string, CSSProperties> = {
+  container: {
+    width: '100vw',
+    display: 'flex',
+  },
+  list: {
+    flex: 1,
+  },
+  detail: {
+    flex: 1,
+  },
+};

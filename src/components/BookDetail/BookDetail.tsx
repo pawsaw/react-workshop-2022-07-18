@@ -1,4 +1,5 @@
 import { Book } from '../../domain/books';
+import { Counter } from '../Counter';
 
 export interface BookDetailProps {
   book: Book;
@@ -7,6 +8,7 @@ export interface BookDetailProps {
 export const BookDetail: React.FC<BookDetailProps> = ({ book }) => {
   return (
     <div>
+      <Counter />
       <h3>{book.title}</h3>
       <p>{book.abstract}</p>
     </div>

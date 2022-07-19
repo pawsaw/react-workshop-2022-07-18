@@ -12,7 +12,7 @@ export const BookList: React.FC<BookListProps> = ({ books, onBookSelected = noop
   return (
     <div>
       {books.map((book) => (
-        <BookListItem key={book.title} book={book} onBookSelected={onBookSelected} />
+        <BookListItem key={book.id} book={book} onBookSelected={onBookSelected} />
       ))}
     </div>
   );

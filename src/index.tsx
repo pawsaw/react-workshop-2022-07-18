@@ -4,17 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from './util/theme/ThemeContext';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <ThemeProvider
-      theme={{
-        primaryColor: 'blue',
-      }}
-    >
-      <App />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider
+        theme={{
+          primaryColor: 'blue',
+        }}
+      >
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>,
 );
 

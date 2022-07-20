@@ -1,5 +1,5 @@
-import { Book } from '../../domain/books';
-import { Counter } from '../Counter';
+import { Book } from '../../../domain/books';
+import { Counter } from '../../../components/Counter';
 
 export interface BookDetailProps {
   book: Book;

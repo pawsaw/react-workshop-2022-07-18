@@ -1,5 +1,6 @@
 import { Link, Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
+import { BookDetailsScreen } from './screens/BookDetailsScreen';
 import { BookScreen } from './screens/BooksScreen';
 import { PlaygroundScreen } from './screens/PlaygroundScreen';
 
@@ -15,6 +16,7 @@ function App() {
         </li>
       </ul>
       <Switch>
+        <Route path="/books/:isbn" component={BookDetailsScreen} />
         <Route path="/books" component={BookScreen} />
         <Route path="/playground" component={PlaygroundScreen} />
         <Redirect to="/books" />

@@ -2,7 +2,7 @@ import { Book } from '../../../domain/books';
 import { noop } from '../../../util/noop';
 import { useCounter } from '../../../components/Counter/CounterContext';
 import { BookListItem } from './BookListItem/BookListItem';
-import { OnBookSelected } from './OnBookSelected';
+import { OnBookSelected } from '../OnBookSelected';
 
 export interface BookListProps {
   books: Book[];

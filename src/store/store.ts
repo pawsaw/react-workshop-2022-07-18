@@ -1,12 +1,13 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { booksReducer } from '../domain/books/store';
+import { countReducer } from '../domain/counter/store';
 
 export const rootReducer = combineReducers({
-  books: (state = []) => state,
+  books: booksReducer,
+  count: countReducer,
 });
 
 export type Store = ReturnType<typeof rootReducer>;
-// alternative way:
-// export type StoreT = NonNullable<Parameters<typeof rootReducer>[0]>;
 
 export const store = configureStore({
   reducer: rootReducer,

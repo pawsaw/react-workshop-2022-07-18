@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Book, useBooks } from '../../domain/books';
 import { BookList } from './BookList';
@@ -8,7 +9,11 @@ export interface BookScreenProps {
 }
 
 export const BookScreen: React.FC<BookScreenProps> = ({ onBookSelected }) => {
-  const { books } = useBooks();
+  const { books, reload } = useBooks();
+
+  useEffect(() => {
+    reload();
+  }, [reload]);
 
   return (
     <div>
